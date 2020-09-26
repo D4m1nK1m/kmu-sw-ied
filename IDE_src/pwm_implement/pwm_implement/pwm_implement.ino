@@ -28,7 +28,7 @@ void set_duty(int duty){ // duty: 0 to 100 (unit: %)
     cnt=1;
   for(int i=0;i<cnt;i++){
     digitalWrite(ledPin, HIGH);
-    delayMicroseconds((float)Period*(float)duty/100.0);
+    delayMicroseconds((float));
     digitalWrite(ledPin, LOW);
     delayMicroseconds(Period-(float)Period*(float)duty/100.0);
   }
