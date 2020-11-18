@@ -10,9 +10,9 @@
 
 #define _DIST_ALPHA 0.3   
 
-#define _DUTY_MIN 1000    
+#define _DUTY_MIN 1100    
 #define _DUTY_NEU 1420    
-#define _DUTY_MAX 2000   
+#define _DUTY_MAX 1700   
 
 #define _SERVO_ANGLE 30   
 #define _SERVO_SPEED 30    
@@ -48,7 +48,7 @@ void setup() {
   myservo.writeMicroseconds(1400);
   
   // initialize serial port
-  Serial.begin(57600);  //[3039]
+  Serial.begin(57600);  
   
   // convert angle speed into duty change per interval.
   duty_chg_per_interval =(float)(_DUTY_MAX - _DUTY_MIN) * (_SERVO_SPEED / _SERVO_ANGLE) * ( _INTERVAL_SERVO / 1000.0); //[3039] 
@@ -92,8 +92,8 @@ void loop() {
   if(event_servo) {
     event_servo = false;
 // adjust servo position according to the USS read value
-    if(dist_raw > 225) duty_target = 1100;
-    else if(dist_raw <= 225) duty_target = 1700;
+    if(dist_raw > 225) duty_target = _DUTY_MIN;
+    else if(dist_raw <= 225) duty_target = _DUTY_MAX;
   }
   if(event_serial) {
     event_serial = false;
